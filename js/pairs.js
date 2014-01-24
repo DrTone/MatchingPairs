@@ -7,6 +7,7 @@ function PairsApp() {
     baseApp.call(this);
     this.numCards = 0;
     this.sceneObjects = [];
+    this.gameStates = [];
 }
 
 PairsApp.prototype = new baseApp();
