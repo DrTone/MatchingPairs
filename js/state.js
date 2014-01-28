@@ -1,6 +1,16 @@
 //State pattern for game state
 
 function State(name) {
-    //code
+}
+
+State.prototype.update = function(elapsedTime, keyState) {
+    
+}
+
+State.prototype.init = function() {
+    
+}
+
+State.prototype.hideState = function() {
     
 }
