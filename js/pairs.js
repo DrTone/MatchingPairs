@@ -7,7 +7,9 @@ function PairsApp() {
     baseApp.call(this);
     this.numCards = 0;
     this.sceneObjects = [];
+    this.stateNames = ['Welcome', 'NameEntry', 'LoadLevel', 'Player1Turn', 'Player2Turn'];
     this.gameStates = [];
+    this.currentState = 0;
 }
 
 PairsApp.prototype = new baseApp();
@@ -15,6 +17,14 @@ PairsApp.prototype = new baseApp();
 PairsApp.prototype.init = function(container) {
     this.animating = false;
     baseApp.prototype.init.call(this, container);
+    this.stateSystem = new StateSystem();
+    var state = 0;
+    this.stateSystem.addState(this.stateNames[state++], new Welcome(''));
+    this.stateSystem.addState(this.stateNames[state++], new NameEntry(''));
+    this.stateSystem.addState(this.stateNames[state++], new LoadLevel(''));
+    this.stateSystem.addState(this.stateNames[state++], new Player1Turn(''));
+    this.stateSystem.addState(this.stateNames[state++], new Player2Turn(''));
+    this.stateSystem.changeState(this.currentState);    
 }
 
 PairsApp.prototype.update = function() {
@@ -44,6 +54,15 @@ PairsApp.prototype.update = function() {
         this.sceneObjects[node].update();
     }
     baseApp.prototype.update.call(this);
+    //Do state update
+    //DEBUG
+    var elapsedTime = 0, keyState = 0;
+    if (this.stateSystem.update(this.elapsedTime, keyState)) {
+        //Change state
+        //DEBUG
+        console.log('State changed');
+        this.stateSystem.changeState(++this.currentState);
+    }
 }
 
 PairsApp.prototype.setupPlayerGeometry = function(geometry, material, xStart, yStart, colInc, rowInc) {

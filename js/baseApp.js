@@ -17,6 +17,8 @@ function baseApp() {
     this.root = null;
     this.mouse = { x:0, y:0, clicked:false};
     this.pickedObjects = [];
+    this.startTime = 0;
+    this.elapsedTime = 0;
 }
 
 baseApp.prototype.init = function(container) {
@@ -86,7 +88,13 @@ baseApp.prototype.update = function() {
     this.controls.update();
 }
 
-baseApp.prototype.run = function() {
+baseApp.prototype.run = function(timestamp) {
+    //Calculate elapsed time
+    if (this.startTime === null) {
+        this.startTime = timestamp;
+    }
+    this.elapsedTime = timestamp - this.startTime;
+    
     this.renderer.render( this.scene, this.camera );
     var self = this;
     //Check for interaction
@@ -100,7 +108,7 @@ baseApp.prototype.run = function() {
         mouseState.clicked = false;
     }
     this.update();
-    requestAnimationFrame(function() { self.run(); });
+    requestAnimationFrame(function(timestamp) { self.run(timestamp); });
 }
 //Interaction
 baseApp.prototype.initMouse = function() {

@@ -4,7 +4,7 @@ function State(name) {
 }
 
 State.prototype.update = function(elapsedTime, keyState) {
-    
+    return false;
 }
 
 State.prototype.init = function() {

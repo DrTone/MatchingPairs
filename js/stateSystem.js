@@ -21,6 +21,6 @@ StateSystem.prototype.changeState = function(stateId) {
     if (this.currentState != null)
         this.states[this.currentState].hideState();
         
-    this.currentState = this.states[stateId];
-    this.currentState.init;
+    this.currentState = stateId;
+    this.states[this.currentState].init();
 }

@@ -6,6 +6,14 @@ function Welcome(name) {
 
 Welcome.prototype = new State(name);
 
+Welcome.prototype.update = function(elapsedTime, keyState) {
+    if (elapsedTime >= 5*1000) {
+        return true;
+    }
+    
+    return false;
+}
+
 function NameEntry(name) {
     State.call(this, name);
 }
