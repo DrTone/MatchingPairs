@@ -4,7 +4,7 @@ var NUM_ROWS = 2;
 var NUM_COLS = 2;
 
 function PairsApp() {
-    baseApp.call(this);
+    BaseApp.call(this);
     this.numCards = 0;
     this.sceneObjects = [];
     this.stateNames = ['Welcome', 'NameEntry', 'LoadLevel', 'Player1Turn', 'Player2Turn'];
@@ -12,11 +12,11 @@ function PairsApp() {
     this.currentState = 0;
 }
 
-PairsApp.prototype = new baseApp();
+PairsApp.prototype = new BaseApp();
 
 PairsApp.prototype.init = function(container) {
     this.animating = false;
-    baseApp.prototype.init.call(this, container);
+    BaseApp.prototype.init.call(this, container);
     this.stateSystem = new StateSystem();
     var state = 0;
     this.stateSystem.addState(this.stateNames[state++], new Welcome(''));
@@ -53,7 +53,7 @@ PairsApp.prototype.update = function() {
     for(var node in this.sceneObjects){
         this.sceneObjects[node].update();
     }
-    baseApp.prototype.update.call(this);
+    BaseApp.prototype.update.call(this);
     //Do state update
     //DEBUG
     var elapsedTime = 0, keyState = 0;
@@ -86,7 +86,7 @@ PairsApp.prototype.setupPlayerGeometry = function(geometry, material, xStart, yS
 
 PairsApp.prototype.createScene = function() {
     //Init base createsScene
-    baseApp.prototype.createScene.call(this);
+    BaseApp.prototype.createScene.call(this);
     
     //Set up geometry for player 1
     var mapUrl = "images/question.png";

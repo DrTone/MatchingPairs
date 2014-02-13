@@ -6,7 +6,7 @@ var offsetTop = 0;
 var offsetWidth = 0;
 var offsetHeight = 0;
 
-function baseApp() {
+function BaseApp() {
     this.renderer = null;
     this.scene = null;
     this.camera = null;
@@ -21,24 +21,24 @@ function baseApp() {
     this.elapsedTime = 0;
 }
 
-baseApp.prototype.init = function(container) {
+BaseApp.prototype.init = function(container) {
     this.container = container;
-    console.log("baseApp container =", container);
+    console.log("BaseApp container =", container);
     this.createRenderer();
-    console.log("baseApp renderer =", this.renderer);
+    console.log("BaseApp renderer =", this.renderer);
     this.createCamera();
     this.initMouse();
     this.createControls();
     this.projector = new THREE.Projector();
 }
 
-baseApp.prototype.createRenderer = function() {
+BaseApp.prototype.createRenderer = function() {
     this.renderer = new THREE.WebGLRenderer( { antialias: true } );
     this.renderer.setSize(this.container.offsetWidth, this.container.offsetHeight);
     this.container.appendChild( this.renderer.domElement );
 }
 
-baseApp.prototype.createScene = function() {
+BaseApp.prototype.createScene = function() {
     this.scene = new THREE.Scene();
     
     var light = new THREE.DirectionalLight( 0xffffff, 1.5);
@@ -54,7 +54,7 @@ baseApp.prototype.createScene = function() {
     this.root = root;
 }
 
-baseApp.prototype.createCamera = function() {
+BaseApp.prototype.createCamera = function() {
     offsetLeft = this.container.offsetLeft;
     offsetTop = this.container.offsetTop;
     offsetWidth = this.container.offsetWidth;
@@ -66,7 +66,7 @@ baseApp.prototype.createCamera = function() {
     console.log('dom =', this.renderer.domElement);
 }
 
-baseApp.prototype.createControls = function() {
+BaseApp.prototype.createControls = function() {
     this.controls = new THREE.TrackballControls(this.camera);
     this.controls.rotateSpeed = 1.0;
     this.controls.zoomSpeed = 1.2;
@@ -83,12 +83,12 @@ baseApp.prototype.createControls = function() {
     var self = this;
 }
 
-baseApp.prototype.update = function() {
+BaseApp.prototype.update = function() {
     //Do any updates
     this.controls.update();
 }
 
-baseApp.prototype.run = function(timestamp) {
+BaseApp.prototype.run = function(timestamp) {
     //Calculate elapsed time
     if (this.startTime === null) {
         this.startTime = timestamp;
@@ -111,12 +111,12 @@ baseApp.prototype.run = function(timestamp) {
     requestAnimationFrame(function(timestamp) { self.run(timestamp); });
 }
 //Interaction
-baseApp.prototype.initMouse = function() {
+BaseApp.prototype.initMouse = function() {
     var self = this;
     this.renderer.domElement.addEventListener('mousedown', self.onAppMouseDown, false);
 }
 
-baseApp.prototype.onAppMouseDown = function (event) {
+BaseApp.prototype.onAppMouseDown = function (event) {
     //var offset = $(this.renderer.domElement).offset();
     var eltx = event.pageX - offsetLeft;
     var elty = event.pageY - offsetTop;
