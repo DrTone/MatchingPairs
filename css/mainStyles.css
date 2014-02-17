@@ -1,0 +1,42 @@
+/* Main styles for Matching Pairs game */
+body {
+    margin: 0;
+    padding: 0;
+    background-color: #5a5a5a;
+    text-align: center;
+}
+
+.mainPage {
+    background-color: #5a5a5a;
+    width: 1280px;
+    margin: auto;
+}
+.centreSection {
+    background-color: #5a5a5a;
+    width: 50%;
+    padding: 0px;
+    float: left;
+}
+#mainTitle {
+    margin: 160px 50px 160px 50px;
+}
+#instructions {
+    margin: 60px;
+}
+#ready {
+    margin: 60px;
+}
+#arrow {
+    margin: 60px;
+}
+.rightSection {
+    background-color: #5a5a5a;
+    width: 25%;
+    float: left;
+}
+
+.leftSection {
+    background-color: #5a5a5a;
+    width: 25%;
+    float: left;
+}
