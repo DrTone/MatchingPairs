@@ -5,7 +5,6 @@ body {
     background-color: #5a5a5a;
     text-align: center;
 }
-
 .mainPage {
     background-color: #5a5a5a;
     width: 1280px;
@@ -13,30 +12,56 @@ body {
 }
 .centreSection {
     background-color: #5a5a5a;
-    width: 50%;
+    width: 40%;
     padding: 0px;
     float: left;
 }
-#mainTitle {
-    margin: 160px 50px 160px 50px;
-}
-#instructions {
-    margin: 60px;
-}
-#ready {
-    margin: 60px;
-}
-#arrow {
-    margin: 60px;
-}
 .rightSection {
     background-color: #5a5a5a;
-    width: 25%;
+    width: 30%;
     float: left;
 }
-
 .leftSection {
     background-color: #5a5a5a;
-    width: 25%;
+    width: 30%;
     float: left;
+}
+#mainTitle {
+    margin: 160px 50px 40px 50px;
+}
+#instructions {
+    margin: 40px 0px 60px 0px;
+}
+#ready {
+    margin: 40px;
+}
+#arrow {
+    margin: 40px;
+}
+#playCards {
+    margin: 70px 0px 60px 20px;
+    float: right;
+}
+#frogs {
+    float: left;
+    margin: 60px 0px 50px 0px;
+}
+#kids {
+    margin: 350px 20px 20px 50px;
+    float: right;
+}
+#nameEntry {
+    margin: 50px;
+}
+#nameInput {
+    width:280px;
+    height:50px;
+    background-color: #3a3a3a;
+    font-family:'Arial Regular', 'Arial';
+    font-weight:400;
+    font-style:normal;
+    font-size:18px;
+    text-decoration:none;
+    color:#FFFFFF;
+    text-align:center;
 }
