@@ -107,6 +107,12 @@ PairsApp.prototype.createScene = function() {
 
 //Execute when DOM ready
 $(document).ready(function() {
+    //Get player names
+    var p1Name='';
+    $('#nameInput').val(p1Name);
+    if(p1Name.length != 0) {
+        console.log('Player 1 =', p1Name);
+    }
     var container = document.getElementById("container");
     var app = new PairsApp();
     app.init(container);
