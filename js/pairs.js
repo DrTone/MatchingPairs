@@ -42,6 +42,7 @@ PairsApp.prototype.update = function() {
                     if (this.sceneObjects[node].children[0].id == id) {
                         console.log("Picked NodeObject", name);
                         this.sceneObjects[node].halfSpin();
+                        this.sceneObjects[node].drop();
                     }
                 }
             }
@@ -87,7 +88,20 @@ PairsApp.prototype.setupPlayerGeometry = function(geometry, material, xStart, yS
 PairsApp.prototype.createScene = function() {
     //Init base createsScene
     BaseApp.prototype.createScene.call(this);
-    
+
+    var backMapURL = "images/sunnySky.jpg";
+    var backMap = THREE.ImageUtils.loadTexture(backMapURL);
+    var backgroundGeom = new THREE.CubeGeometry(40, 30, 0.01, 8, 8, 1);
+    var backMat = new THREE.MeshPhongMaterial({ map: backMap });
+    var model = new THREE.Mesh(backgroundGeom, backMat);
+    model.name = "Background";
+    var node = new NodeObject();
+    node.name = "BackNode";
+    node.add(model);
+    node.position.set(0,0,-5);
+    this.root.add(node);
+    this.sceneObjects.push(node);
+
     //Set up geometry for player 1
     var mapUrl = "images/question.png";
     var map = THREE.ImageUtils.loadTexture(mapUrl);
@@ -100,19 +114,15 @@ PairsApp.prototype.createScene = function() {
     this.setupPlayerGeometry(geometry, material, -xStart, yStart, columnInc, rowInc);
     
     //Geometry for player 2
-    this.setupPlayerGeometry(geometry, material, xStart, yStart, columnInc, rowInc);
+    //this.setupPlayerGeometry(geometry, material, xStart, yStart, columnInc, rowInc);
+    //Create textured quad as background
+
     
     console.log("Cards added to scene");
 }
 
 //Execute when DOM ready
 $(document).ready(function() {
-    //Get player names
-    var p1Name='';
-    $('#nameInput').val(p1Name);
-    if(p1Name.length != 0) {
-        console.log('Player 1 =', p1Name);
-    }
     var container = document.getElementById("container");
     var app = new PairsApp();
     app.init(container);

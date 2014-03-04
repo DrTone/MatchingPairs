@@ -41,10 +41,10 @@ BaseApp.prototype.createRenderer = function() {
 BaseApp.prototype.createScene = function() {
     this.scene = new THREE.Scene();
     
-    var light = new THREE.DirectionalLight( 0xffffff, 1.5);
-    light.position.set(0, 0, 100);
+    var light = new THREE.DirectionalLight( 0x888888, 1.5);
+    light.position.set(50, 50, 100);
     this.scene.add( light );
-    var ambientLight = new THREE.AmbientLight(0xBBBBBB);
+    var ambientLight = new THREE.AmbientLight(0x222222);
     this.scene.add(ambientLight);
     this.scene.add(this.camera);
     
