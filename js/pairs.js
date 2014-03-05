@@ -52,7 +52,7 @@ PairsApp.prototype.update = function() {
     
     //Update scene objects
     for(var node in this.sceneObjects){
-        this.sceneObjects[node].update();
+        this.sceneObjects[node].update(this.elapsedTime);
     }
     BaseApp.prototype.update.call(this);
     //Do state update
@@ -89,6 +89,7 @@ PairsApp.prototype.createScene = function() {
     //Init base createsScene
     BaseApp.prototype.createScene.call(this);
 
+    //Create textured quad as background
     var backMapURL = "images/sunnySky.jpg";
     var backMap = THREE.ImageUtils.loadTexture(backMapURL);
     var backgroundGeom = new THREE.CubeGeometry(40, 30, 0.01, 8, 8, 1);
@@ -111,13 +112,31 @@ PairsApp.prototype.createScene = function() {
     var yStart = 2.5;
     var columnInc = 5;
     var rowInc = 5;
-    this.setupPlayerGeometry(geometry, material, -xStart, yStart, columnInc, rowInc);
+    //this.setupPlayerGeometry(geometry, material, -xStart, yStart, columnInc, rowInc);
     
     //Geometry for player 2
     //this.setupPlayerGeometry(geometry, material, xStart, yStart, columnInc, rowInc);
-    //Create textured quad as background
 
-    
+    //Animate all the nodes
+    /*
+    for(var node=1; node<this.sceneObjects.length; ++node){
+        this.sceneObjects[node].sine(node * 500, 5, 2000);
+    }
+    */
+
+    //Load model
+    var loader = new THREE.JSONLoader();
+    var self = this;
+    var callbackModel = function (geometry, materials) { createScene(self, geometry, materials, 0, 0, 0)};
+
+    function createScene(self, geometry, materials, x, y, z) {
+        var mesh = new THREE.Mesh(geometry, new THREE.MeshFaceMaterial( materials ) );
+        mesh.position.set(x, y, z);
+        self.root.add(mesh);
+    }
+
+    loader.load("models/pyramid.js", callbackModel);
+
     console.log("Cards added to scene");
 }
 

@@ -61,7 +61,7 @@ BaseApp.prototype.createCamera = function() {
     offsetHeight = this.container.offsetHeight;
     
     this.camera = new THREE.PerspectiveCamera( 45, this.container.offsetWidth / this.container.offsetHeight, 1, 1000 );
-    this.camera.position.set( 0, 0, 25 );
+    this.camera.position.set( 0, 0, 35 );
     
     console.log('dom =', this.renderer.domElement);
 }
